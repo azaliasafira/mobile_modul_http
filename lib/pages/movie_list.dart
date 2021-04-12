@@ -1,8 +1,3 @@
-// ignore: unused_import
-import 'dart:ffi';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:list_mov2/pages/movie_detail.dart';
 import 'package:list_mov2/services/http_service.dart';

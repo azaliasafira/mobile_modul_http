@@ -1,19 +1,16 @@
 import 'dart:convert';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-
 import 'package:http/http.dart' as http;
 import 'package:list_mov2/models/movie.dart';
 
 class HttpService {
-  final String apiKey = '7745248cce48c5838123bc077c473543';
+  final String apiKey = '339a2ff562ca750c5daaa73ff376d53e';
   final String baseUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=';
 
   Future<List> getPopularMovies() async {
     final String uri = baseUrl + apiKey;
 
     http.Response result = await http.get(Uri.parse(uri));
-    if (result.statusCode == HttpStatus.ok) {
+    if (result.statusCode == 200) {
       print("Sukses");
       final jsonResponse = json.decode(result.body);
       final moviesMap = jsonResponse['results'];
