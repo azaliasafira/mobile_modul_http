@@ -3,18 +3,30 @@ class Movie {
   String originalTitle;
   double voteAverage;
   String overview;
+  List<int> genreIds;
   String posterPath;
 
   Movie(this.id, this.originalTitle, this.voteAverage, this.overview,
-      this.posterPath);
+      this.genreIds, this.posterPath);
 
-  Movie.fromJson(Map<String, dynamic> parsedJson) {
-    this.id = parsedJson['id'];
-    this.originalTitle = parsedJson['original_title'];
-    this.voteAverage = parsedJson['vote_average'] * 1.0;
-    this.overview = parsedJson['overview'];
-    this.posterPath = parsedJson['poster_path'];
+  Movie.fromJson(Map<String, dynamic> Json) {
+    this.id = Json['id'];
+    this.originalTitle = Json['original_title'];
+    this.voteAverage = Json['vote_average'] * 1.0;
+    this.overview = Json['overview'];
+    this.genreIds = Json['genre_ids'].cast<int>();
+    this.posterPath = Json['poster_path'];
   }
 
-  get poster => null;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.originalTitle;
+    data['vote_average'] = this.voteAverage;
+    data['overview'] = this.overview;
+    data['genre_ids'] = this.genreIds;
+    data['poster_path'] = this.posterPath;
+    // data['release_date'] = this.releaseDate;
+    return data;
+  }
 }
