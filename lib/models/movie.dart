@@ -4,6 +4,7 @@ class Movie {
   double voteAverage;
   String overview;
   List<int> genreIds;
+  String releaseDate;
   String posterPath;
 
   Movie(this.id, this.originalTitle, this.voteAverage, this.overview,
@@ -15,6 +16,7 @@ class Movie {
     this.voteAverage = Json['vote_average'] * 1.0;
     this.overview = Json['overview'];
     this.genreIds = Json['genre_ids'].cast<int>();
+    this.releaseDate = Json['release_date'];
     this.posterPath = Json['poster_path'];
   }
 
@@ -25,8 +27,8 @@ class Movie {
     data['vote_average'] = this.voteAverage;
     data['overview'] = this.overview;
     data['genre_ids'] = this.genreIds;
+    data['release_date'] = this.releaseDate;
     data['poster_path'] = this.posterPath;
-    // data['release_date'] = this.releaseDate;
     return data;
   }
 }

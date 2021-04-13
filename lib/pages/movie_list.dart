@@ -8,6 +8,7 @@ class MovieList extends StatefulWidget {
 }
 
 class _MovieListState extends State<MovieList> {
+  String imgPath = 'https://image.tmdb.org/t/p/w500/';
   int moviesCount;
   List movies;
   HttpService service;
@@ -31,27 +32,40 @@ class _MovieListState extends State<MovieList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Popular Movies"),
+      appBar: AppBar(
+        title: Text(
+          "Popular Movies",
         ),
-        body: ListView.builder(
+      ),
+      body: GridView.builder(
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200,
+              childAspectRatio: 2 / 3,
+              mainAxisSpacing: 20),
           itemCount: (this.moviesCount == null) ? 0 : this.moviesCount,
           itemBuilder: (context, int position) {
             return Card(
-              color: Colors.white,
+              color: Colors.grey,
               elevation: 2.0,
-              child: ListTile(
-                title: Text(movies[position].originalTitle),
-                subtitle:
-                    Text('Rating = ' + movies[position].voteAverage.toString()),
+              child: InkWell(
                 onTap: () {
                   MaterialPageRoute route = MaterialPageRoute(
                       builder: (_) => MovieDetail(movies[position]));
                   Navigator.push(context, route);
                 },
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image:
+                          NetworkImage(imgPath + movies[position].posterPath),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
               ),
             );
-          },
-        ));
+          }),
+    );
   }
 }

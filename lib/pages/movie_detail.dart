@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_mov2/models/movie.dart';
 import 'package:list_mov2/models/constants.dart';
+import 'package:list_mov2/models/date_utils.dart' as A;
 
 class MovieDetail extends StatelessWidget {
   final Movie movie;
@@ -31,8 +32,19 @@ class MovieDetail extends StatelessWidget {
                   height: height / 1.5,
                   child: Image.network(path)),
               Container(
-                child: Text(movie.overview),
-                padding: EdgeInsets.only(left: 16, right: 16),
+                padding: EdgeInsets.all(16),
+                child: Text(movie.originalTitle,
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              ),
+              Container(
+                  child: Text(movie.overview, textAlign: TextAlign.center),
+                  padding: EdgeInsets.only(left: 16, right: 16)),
+              Container(
+                padding: EdgeInsets.fromLTRB(8.0, 8.0, 280.0, 4.0),
+                child: Text('Rate : ' + movie.voteAverage.toString(),
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
               ),
               Wrap(
                 children: <Widget>[
@@ -41,6 +53,15 @@ class MovieDetail extends StatelessWidget {
                       label: Text(genre.name),
                     )
                 ],
+              ),
+              Container(
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  'Release Date: ' +
+                      A.DateUtils.formatDate(movie.releaseDate, 'dd MMMM yyyy'),
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                ),
               ),
             ],
           ),

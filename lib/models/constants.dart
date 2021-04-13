@@ -3,8 +3,6 @@ import 'package:list_mov2/models/genre.dart';
 
 final String imagePrefix = 'https://image.tmdb.org/t/p/w500';
 
-final titleStyle = TextStyle(fontSize: 24, fontWeight: FontWeight.w300);
-
 final List<Genre> genres = [
   {"id": 28, "name": "Action"},
   {"id": 12, "name": "Adventure"},
